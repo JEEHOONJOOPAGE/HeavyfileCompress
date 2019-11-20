@@ -20,33 +20,32 @@ public class ServerApp {
 	public ServerApp() {
 		
 		
-		serverOn(); //¼­¹ö½ÇÇà
+		serverOn(); //ì„œë²„ì‹¤í–‰
 		
 		while (true) {
 			try {
 				c_socket = s_socket.accept();
 				is = c_socket.getInputStream();
 				
-				String msg = getMessage(is); //¸Ş¼¼Áö Æ÷ÆÃ				
+				String msg = getMessage(is); 				
 				System.out.println(msg);
 				
 				
-				if(msg.equalsIgnoreCase("over")) {					
-					break;
-				}
+				if(msg.equalsIgnoreCase("over")) break;					
+					
 			} catch (Exception e) {
 				// TODO: handle exception
 				System.out.println("[ServerApp::ServerApp] Exception : " + e.getMessage());
-				serverClose();
+				serverClose(); //ì„œë²„ ì¢…ë£Œ
 			}
 		}
 		
-		serverClose();
+		serverClose(); //ì„œë²„ ì¢…ë£Œ
 		
 	}
 	
 	
-	//¼­¹ö ½ÇÇà
+	//ì„œë²„ì‹¤í–‰
 	public void serverOn() {
 		try {
 			su = new SocketUtil();
@@ -60,6 +59,7 @@ public class ServerApp {
 		}
 	}
 	
+	//ì„œë²„ ì¢…ë£Œ
 	public void serverClose() {
 		
 		su.serverSocketCloes(s_socket);
@@ -68,7 +68,7 @@ public class ServerApp {
 		
 	}
 	
-	//¸Ş¼¼Áö Æ÷ÆÃ
+	//ë©”ì„¸ì§€ í¬íŒ…
 	public String getMessage(InputStream is) {
 		
 		byte[] inputByte = new byte[500];
