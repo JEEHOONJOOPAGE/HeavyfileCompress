@@ -30,7 +30,6 @@ public class ServerApp {
 				String msg = getMessage(is); 				
 				System.out.println(msg);
 				
-				
 				if(msg.equalsIgnoreCase("over")) break;					
 					
 			} catch (Exception e) {
