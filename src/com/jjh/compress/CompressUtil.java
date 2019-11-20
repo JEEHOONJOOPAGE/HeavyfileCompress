@@ -14,6 +14,7 @@ public class CompressUtil {
 			defl.write(in);
 			defl.flush();
 			defl.close();
+			System.out.println("[CompressUtil::byteCompress] " + in.length + " >> " + out.toByteArray().length);
 
 			return out.toByteArray();
 		} catch (Exception e) {
@@ -29,6 +30,7 @@ public class CompressUtil {
 			infl.write(in);
 			infl.flush();
 			infl.close();
+			System.out.println("[CompressUtil::byteDecompress] " + in.length + " >> " + out.toByteArray().length);
 
 			return out.toByteArray();
 		} catch (Exception e) {

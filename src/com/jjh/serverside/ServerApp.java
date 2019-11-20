@@ -22,6 +22,7 @@ public class ServerApp {
 		
 		serverOn(); //서버실행
 		
+		
 		while (true) {
 			try {
 				c_socket = s_socket.accept();
@@ -30,17 +31,18 @@ public class ServerApp {
 				String msg = getMessage(is); 				
 				System.out.println(msg);
 				
-				if(msg.equalsIgnoreCase("over")) break;					
+				if(msg.equalsIgnoreCase("over")) break;
 					
 			} catch (Exception e) {
 				// TODO: handle exception
-				System.out.println("[ServerApp::ServerApp] Exception : " + e.getMessage());
+				System.out.println("[ServerApp::ServerApp] Exception : " + e.getMessage());				
+			} finally {
 				serverClose(); //서버 종료
 			}
 		}
 		
-		serverClose(); //서버 종료
 		
+		serverClose(); //서버 종료		
 	}
 	
 	
@@ -49,9 +51,7 @@ public class ServerApp {
 		try {
 			su = new SocketUtil();
 			s_socket = new ServerSocket(su.port);			
-			System.out.println("[ServerApp::serverOn] SERVER ON");
-
-			
+			System.out.println("[ServerApp::serverOn] SERVER ON");			
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println("[ServerApp::serverOn] Exception : " + e.getMessage());
@@ -59,12 +59,10 @@ public class ServerApp {
 	}
 	
 	//서버 종료
-	public void serverClose() {
-		
+	public void serverClose() {		
 		su.serverSocketCloes(s_socket);
 		su.socketClose(c_socket);
-		System.out.println("[ServerApp::serverClose] SERVER CLOSE");
-		
+		System.out.println("[ServerApp::serverClose] SERVER CLOSE");		
 	}
 	
 	//메세지 포팅
@@ -81,7 +79,6 @@ public class ServerApp {
 			System.out.println("[ServerApp::getMessage] Exception : " + e.getMessage());
 			return "";
 		}
-		
 		
 	}
 }
