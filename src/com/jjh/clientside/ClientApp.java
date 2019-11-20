@@ -1,10 +1,9 @@
 package com.jjh.clientside;
 
-import java.io.IOException;
+
 import java.io.OutputStream;
 import java.net.Socket;
-import java.net.UnknownHostException;
-
+import com.jjh.filecontrol.FileUtil;
 import com.jjh.socketside.SocketUtil;
 
 public class ClientApp {
@@ -13,39 +12,43 @@ public class ClientApp {
 	OutputStream os;
 	
 	SocketUtil   su;
+	FileUtil     fu;
 	
 	
 	public ClientApp() {
 		
 		try {
 			
+			fu = new FileUtil();
+			fu.getFileByte();
+			
 			su = new SocketUtil();
-			c_socket = new Socket(su.ip, su.port);
+//			c_socket = new Socket(su.ip, su.port);
+//			
+//			String msg = "over";
+//			
+//			os = c_socket.getOutputStream();
+//			os.write(msg.getBytes());
+//			os.flush();
+//			
+//			System.out.println("[SEND]" + msg);
 			
-			String msg = "over";
-			
-			os = c_socket.getOutputStream();
-			os.write(msg.getBytes());
-			os.flush();
-			
-			System.out.println("[SEND]" + msg);
 			
 			
-			
-		} catch (UnknownHostException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			System.out.println("[ClientApp::ClientApp] UnknownHostException : " + e.getMessage());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			System.out.println("[ClientApp::ClientApp] IOException : " + e.getMessage());
+			System.out.println("[ClientApp::ClientApp] Exception : " + e.getMessage());			
+		}  finally {
+			su.socketClose(c_socket);
 		}
 		
-		
-		
-		
+		su.socketClose(c_socket);
 		
 	}
 	
+	
+	
+
 	
 	
 	
