@@ -23,24 +23,29 @@ public class ServerApp {
 		serverOn(); //서버실행
 		
 		
-		while (true) {
-			try {
+		try {
+			
+			while (true) {
 				c_socket = s_socket.accept();
 				is = c_socket.getInputStream();
-				
-				String msg = getMessage(is); 				
-				System.out.println(msg);
-				
-				if(msg.equalsIgnoreCase("over")) break;
-					
-			} catch (Exception e) {
-				// TODO: handle exception
-				System.out.println("[ServerApp::ServerApp] Exception : " + e.getMessage());				
-			} finally {
-				serverClose(); //서버 종료
+
+				String msg = getMessage(is);
+				if(msg.length() > 100) {
+					System.out.println("[RECV][" + msg.substring(0, 100) + ".....]");
+				} else {
+					System.out.println("[RECV][" + msg + "]");
+				}
+
+				if (msg.equalsIgnoreCase("over"))
+					break;
+
 			}
+						
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("[ServerApp::ServerApp] Exception : " + e.getMessage());
+			serverClose(); //서버 종료	
 		}
-		
 		
 		serverClose(); //서버 종료		
 	}
@@ -68,7 +73,7 @@ public class ServerApp {
 	//메세지 포팅
 	public String getMessage(InputStream is) {
 		
-		byte[] inputByte = new byte[500];
+		byte[] inputByte = new byte[su.packet];
 		try {
 			
 			is.read(inputByte);

@@ -4,8 +4,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class SocketUtil {
-	public String ip = "localhost";
-	public int port = 8888;
+	public final String ip = "localhost";
+	public final int port = 8888;
+	
+	public final int packet = 30000; //서버와 클라이언트간 한번 통신에 보내는 데이터 양
 	
 	
 	public void serverSocketCloes(ServerSocket ss) {
