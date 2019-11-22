@@ -6,3 +6,4 @@ Heavy file transfer using byte compression
 2. 송수신 규칙으로 한패킷당 정해진 byte수가 있음
 3. 일반 송수신 시간과 압축 송수신 시간 비교목적
 
+working now....
